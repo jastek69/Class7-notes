@@ -12,6 +12,8 @@ resource "aws_instance" "example" {
   ami           = data.aws_ami.amzn_linux_2023_ami.id
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_a.id
+  vpc_security_group_ids = [aws_security_group.web_tier.id]
+  #user_data = file()
 
   root_block_device {
     volume_size = 20
